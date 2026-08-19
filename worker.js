@@ -2,6 +2,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // Sağlık testi
     if (url.pathname === "/api/test") {
       return Response.json({
         status: "online",
@@ -9,6 +10,7 @@ export default {
       });
     }
 
-    return new Response("Plexi");
+    // Frontend
+    return env.ASSETS.fetch(request);
   }
 };
