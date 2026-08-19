@@ -8,21 +8,19 @@
 
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
             background: #000;
             color: white;
             font-family: Arial, sans-serif;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* Yıldız alanı */
         .space {
             position: fixed;
             inset: 0;
@@ -32,27 +30,25 @@
 
         .star {
             position: absolute;
-            width: 2px;
-            height: 2px;
+            width: 1px;
+            height: 1px;
             background: white;
             border-radius: 50%;
-            opacity: 0.7;
-
-            animation: moveStar linear infinite;
+            animation: starMove linear infinite;
         }
 
-        @keyframes moveStar {
+        @keyframes starMove {
             from {
                 transform: translate(0, 0);
                 opacity: 0;
             }
 
             20% {
-                opacity: 0.7;
+                opacity: .6;
             }
 
             80% {
-                opacity: 0.7;
+                opacity: .6;
             }
 
             to {
@@ -61,25 +57,79 @@
             }
         }
 
-        /* Ana içerik */
-        .center {
+        .app {
             position: relative;
-            z-index: 10;
-
-            width: 100%;
+            z-index: 5;
             height: 100vh;
 
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
 
         .logo {
             font-size: 64px;
             font-weight: 700;
             letter-spacing: -3px;
+            margin-bottom: 35px;
+        }
 
-            user-select: none;
+        .chat-box {
+            width: min(700px, 90%);
+            display: flex;
+            gap: 10px;
+        }
+
+        #message {
+            flex: 1;
+            height: 52px;
+
+            background: #111;
+            color: white;
+
+            border: 1px solid #333;
+            border-radius: 14px;
+
+            padding: 0 18px;
+            outline: none;
+
+            font-size: 16px;
+        }
+
+        #message:focus {
+            border-color: #666;
+        }
+
+        #send {
+            width: 52px;
+            height: 52px;
+
+            border: none;
+            border-radius: 14px;
+
+            background: white;
+            color: black;
+
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        #send:hover {
+            background: #ddd;
+        }
+
+        #response {
+            width: min(700px, 90%);
+            max-height: 300px;
+
+            margin-top: 25px;
+
+            overflow-y: auto;
+
+            color: #ddd;
+            line-height: 1.5;
+            text-align: left;
         }
     </style>
 </head>
@@ -88,16 +138,35 @@
 
     <div class="space" id="space"></div>
 
-    <main class="center">
+    <main class="app">
+
         <div class="logo">Plexi</div>
+
+        <div class="chat-box">
+
+            <input
+                id="message"
+                type="text"
+                placeholder="Plexi'ye bir şey sor..."
+                autocomplete="off"
+            >
+
+            <button id="send">↑</button>
+
+        </div>
+
+        <div id="response"></div>
+
     </main>
 
+
     <script>
+
+        /* YILDIZLAR */
+
         const space = document.getElementById("space");
 
-        const STAR_COUNT = 80;
-
-        for (let i = 0; i < STAR_COUNT; i++) {
+        for (let i = 0; i < 80; i++) {
 
             const star = document.createElement("div");
 
@@ -113,16 +182,89 @@
                 (4 + Math.random() * 8) + "s";
 
             star.style.animationDelay =
-                (Math.random() * 8) + "s";
-
-            const size =
-                Math.random() > 0.85 ? 2 : 1;
-
-            star.style.width = size + "px";
-            star.style.height = size + "px";
+                Math.random() * 8 + "s";
 
             space.appendChild(star);
         }
+
+
+        /* CHAT */
+
+        const message = document.getElementById("message");
+        const send = document.getElementById("send");
+        const response = document.getElementById("response");
+
+
+        async function sendMessage() {
+
+            const text = message.value.trim();
+
+            if (!text) {
+                return;
+            }
+
+            response.textContent = "Düşünüyor...";
+            message.value = "";
+
+            try {
+
+                const result = await fetch("/chat", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        message: text
+                    })
+
+                });
+
+
+                const data = await result.json();
+
+
+                if (data.response) {
+
+                    response.textContent =
+                        data.response;
+
+                } else {
+
+                    response.textContent =
+                        "Bir hata oluştu.";
+
+                }
+
+            } catch (error) {
+
+                response.textContent =
+                    "Sunucuya bağlanılamadı.";
+
+                console.error(error);
+            }
+        }
+
+
+        send.addEventListener(
+            "click",
+            sendMessage
+        );
+
+
+        message.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Enter") {
+                    sendMessage();
+                }
+
+            }
+        );
+
     </script>
 
 </body>
