@@ -1,0 +1,107 @@
+{
+    "astrofizik": {
+        "keywords": [
+            "kara delik",
+            "nötron yıldızı",
+            "kuasar",
+            "relativistik",
+            "yıldız"
+        ],
+        "knowledge": "Astrofizik; yıldızları, kara delikleri, galaksileri, nötron yıldızlarını ve evrendeki fiziksel olayları inceler."
+    },
+
+    "mikoloji": {
+        "keywords": [
+            "mantar",
+            "miselyum",
+            "spor",
+            "fungus"
+        ],
+        "knowledge": "Mikoloji, mantarları ve mantarların yaşam döngülerini, yapılarını ve ekosistemlerdeki rollerini inceleyen bilim dalıdır."
+    },
+
+    "kuantum_fiziği": {
+        "keywords": [
+            "kuantum",
+            "süperpozisyon",
+            "dolanıklık",
+            "qubit"
+        ],
+        "knowledge": "Kuantum fiziği, atom ve atom altı ölçekte maddenin ve enerjinin davranışlarını inceler."
+    },
+
+    "paleontoloji": {
+        "keywords": [
+            "fosil",
+            "dinozor",
+            "trilobit",
+            "paleontoloji"
+        ],
+        "knowledge": "Paleontoloji, geçmişte yaşamış canlıları fosiller ve jeolojik kayıtlar üzerinden inceler."
+    },
+
+    "volkanoloji": {
+        "keywords": [
+            "volkan",
+            "lav",
+            "magma",
+            "kül",
+            "volkanik"
+        ],
+        "knowledge": "Volkanoloji, volkanları, magma hareketlerini, lav akışlarını ve volkanik patlamaları inceler."
+    },
+
+    "entomoloji": {
+        "keywords": [
+            "böcek",
+            "kelebek",
+            "arı",
+            "karınca",
+            "entomoloji"
+        ],
+        "knowledge": "Entomoloji, böcekleri; anatomilerini, davranışlarını, yaşam döngülerini ve ekolojik rollerini inceler."
+    },
+
+    "oşinografi": {
+        "keywords": [
+            "okyanus",
+            "deniz",
+            "akıntı",
+            "derin deniz",
+            "oşinografi"
+        ],
+        "knowledge": "Oşinografi, okyanusların fiziksel, kimyasal, biyolojik ve jeolojik özelliklerini inceler."
+    },
+
+    "ornitoloji": {
+        "keywords": [
+            "kuş",
+            "ornitoloji",
+            "göçmen kuş",
+            "tüy"
+        ],
+        "knowledge": "Ornitoloji, kuşların davranışlarını, anatomilerini, ekolojilerini ve evrimlerini inceleyen bilim dalıdır."
+    },
+
+    "herpetoloji": {
+        "keywords": [
+            "sürüngen",
+            "amfibi",
+            "yılan",
+            "kertenkele",
+            "kurbağa"
+        ],
+        "knowledge": "Herpetoloji, sürüngenleri ve amfibileri inceleyen zooloji alanıdır."
+    },
+
+    "arkeoloji": {
+        "keywords": [
+            "arkeoloji",
+            "antik kent",
+            "kazı",
+            "arkeolog",
+            "eser"
+        ],
+        "knowledge": "Arkeoloji, geçmiş insan toplumlarını maddi kalıntılar, yapılar ve arkeolojik alanlar üzerinden araştırır."
+    }
+}
